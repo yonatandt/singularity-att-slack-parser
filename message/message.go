@@ -9,8 +9,9 @@ import (
 	"strings"
 	"time"
 
+	"singularity-slack-reader/utils"
+
 	"github.com/twinj/uuid"
-	"github.com/yonatandt/singularity-slack-reader/utils"
 )
 
 // Feature Flag Change Type
@@ -38,16 +39,6 @@ type Message struct {
 	// Postback Update Related Fields:
 	PostbackUpdateType string `json:"postback_update_type,omitempty"`
 	AdNetwork          string `json:"ad_net,omitempty"`
-}
-
-type DeployStructured struct {
-	ID              string           `json:"id"`
-	Type            string           `json:"event_type"`
-	Subtype         string           `json:"subtype"`
-	Description     string           `json:"header"`
-	Subject         Subject          `json:"subject"`
-	RelatedSubjects []RelatedSubject `json:"related_subjects"`
-	Timestamps      string           `json:"timestamps"`
 }
 
 type StructuredMessage struct {

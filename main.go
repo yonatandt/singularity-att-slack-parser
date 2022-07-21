@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/yonatandt/singularity-slack-reader/message"
+	"singularity-slack-reader/message"
 )
 
 const (
@@ -28,8 +28,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		if !is_authenticated {
 			fmt.Println("Authentication failed!")
 			// return 401 unauthorized
-			w.WriteHeader(http.StatusUnauthorized)
-			return
+			// w.WriteHeader(http.StatusUnauthorized)
+			// return
 		}
 
 		// get "text" param from post data:
@@ -43,7 +43,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		var structuredMessage message.StructuredMessage
 
 		switch incomingMessage.Type {
-		case "deploy":
+		case "code-change":
 			structuredMessage = incomingMessage.ToDeploy()
 		case "ff-change":
 			structuredMessage = incomingMessage.ToFeatureFlagChange()
