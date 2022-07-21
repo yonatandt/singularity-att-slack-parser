@@ -61,7 +61,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/deploy", handler)
+	http.HandleFunc("/att-ops", handler)
 	log.Println("Server starting on port 8080")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
