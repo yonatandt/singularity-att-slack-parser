@@ -1,0 +1,38 @@
+{
+    "id": "123-456-789",
+    "event_type": "code_change",
+    "subtype": "merge",
+    "header": "Deploying a feature",
+    "relevant_components": [
+        "component1",
+        "component2"
+    ],
+    "relevant_feature_names": [
+        "feature1",
+        "feature2"
+    ],
+    "relevant_migration_files": [
+        "feature1",
+        "feature2"
+    ],
+    "adnet": "tiktok",
+    "org": "netmarble",
+    "repo": "singular-labs/attribution"
+}
+{
+    "event_type": "feature flag change",
+    "subtype": "enable",
+    "message": "Enabling allow_ims FF for netmarble",
+    "org": "netmarble",
+    feature_flags: [
+        "allow_ims"
+    ],
+    "update_command": "UPDATE FROM ............"
+}
+{
+    "event_type": "update postback rules",
+    "adnet": "toktok",
+    "org": "netmarble",
+    "message": "Updating postback rules",
+    "zendesk ticket": "https://singular.zendesk.com/hc/en-us/articles/360020603331",
+}

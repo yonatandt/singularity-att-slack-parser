@@ -1,6 +1,7 @@
 package main
 
 import (
+	"crypto/sha1"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -15,6 +16,7 @@ import (
 
 const (
 	LOG_FILE_PATH = "../logs/message.log"
+	SlackHash     = "f9e720f6ca356a15d61a5895566c2560ca110e9a"
 )
 
 // Feature Flag Change Type
@@ -32,6 +34,15 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		// print the post data:
 		r.ParseForm()
 		fmt.Println("Form data: ", r.Form)
+
+		token := r.FormValue("token")
+		is_authenticated := checkPassword(token)
+		if !is_authenticated {
+			fmt.Println("Authentication failed!")
+			// return 401 unauthorized
+			w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
 
 		// get "text" param from post data:
 		text := r.PostFormValue("text")
@@ -313,4 +324,9 @@ func getRepoNameFromGithubPrURL(url string) string {
 		return "attribution"
 	}
 	return fmt.Sprintf("%s/%s", splitArr[3], splitArr[4])
+}
+
+func checkPassword(password string) bool {
+	hsha1 := sha1.Sum([]byte(password))
+	return fmt.Sprintf("%x", hsha1) == SlackHash
 }
